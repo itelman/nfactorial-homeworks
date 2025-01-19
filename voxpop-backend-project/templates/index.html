@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VoxPop - Публичная лента</title>
+</head>
+<body>
+    <h1>Публичная лента комментариев</h1>
+    <a href="/comment/new">Добавить комментарий</a>
+    <ul>
+        {% for comment in comments %}
+        <li>
+            <strong>Категория:</strong> {{ comment.category }}<br>
+            <p>{{ comment.text }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <div>
+        <form method="get" action="/">
+            {% if page > 1 %}
+            <button type="submit" name="page" value="{{ page - 1 }}">Предыдущая</button>
+            {% endif %}
+            {% if page < total_pages %}
+            <button type="submit" name="page" value="{{ page + 1 }}">Следующая</button>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

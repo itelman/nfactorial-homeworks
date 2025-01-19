@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить комментарий</title>
+</head>
+<body>
+    <h1>Добавить комментарий</h1>
+    <form method="post" action="/comment/new">
+        <label for="text">Комментарий:</label><br>
+        <textarea id="text" name="text" required></textarea><br>
+        <label for="category">Категория:</label><br>
+        <select id="category" name="category">
+            <option value="Позитивный">Позитивный</option>
+            <option value="Негативный">Негативный</option>
+        </select><br>
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>
