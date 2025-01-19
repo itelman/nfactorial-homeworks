@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Cars</title>
+</head>
+<body>
+    <form method="get" action="/cars/search">
+        <input type="text" name="car_name" value="{{ car_name }}" placeholder="Enter car name">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for car in cars %}
+            <li>{{ car }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
