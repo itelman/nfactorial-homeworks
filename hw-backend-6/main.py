@@ -7,55 +7,16 @@ from fastapi.templating import Jinja2Templates
 from jose import jwt, JWTError
 from passlib.hash import bcrypt
 
+from repository.flowers import FlowersRepository, Flower
+from repository.users import UsersRepository, User
+
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 SECRET_KEY = "zf5NgBhy6YvshK7o3kZ2VyQ9qJ8RvI41XTpLpXyz2qQ"
 ALGORITHM = "HS256"
 
-
-class User:
-    def __init__(self, email: str, name: str, password: str):
-        self.id = uuid.uuid4()
-        self.email = email
-        self.name = name
-        self.password = bcrypt.hash(password)
-        self.purchased = []
-
-
-class UsersRepository:
-    def __init__(self):
-        self.users = []
-
-    def add_user(self, user: User):
-        self.users.append(user)
-
-    def get_user_by_email(self, email: str) -> Optional[User]:
-        return next((user for user in self.users if user.email == email), None)
-
-
 users_repo = UsersRepository()
-
-
-class Flower:
-    def __init__(self, name: str, quantity: int, price: float):
-        self.id = uuid.uuid4()
-        self.name = name
-        self.quantity = quantity
-        self.price = price
-
-
-class FlowersRepository:
-    def __init__(self):
-        self.flowers = []
-
-    def add_flower(self, flower: Flower):
-        self.flowers.append(flower)
-
-    def get_flower_by_id(self, flower_id: uuid.UUID) -> Optional[Flower]:
-        return next((flower for flower in self.flowers if flower.id == flower_id), None)
-
-
 flowers_repo = FlowersRepository()
 
 
