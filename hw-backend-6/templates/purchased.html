@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Purchased Flowers</title>
+</head>
+<body>
+<h1>Purchased Flowers</h1>
+<ul>
+    {% for flower in flowers %}
+    <li>{{ flower.name }} - Price: {{ flower.price }}</li>
+    {% endfor %}
+</ul>
+<p><a href="/flowers">Back to Flower Marketplace</a></p>
+</body>
+</html>

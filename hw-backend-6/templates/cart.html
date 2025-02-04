@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+</head>
+<body>
+<h1>Your Cart</h1>
+<ul>
+    {% for flower in flowers %}
+    <li>{{ flower.name }} - Price: {{ flower.price }}</li>
+    {% endfor %}
+</ul>
+<h2>Total: {{ total }}</h2>
+<form action="/purchased" method="post">
+    <button type="submit">Purchase</button>
+</form>
+<p><a href="/flowers">Back to Flower Marketplace</a></p>
+</body>
+</html>
