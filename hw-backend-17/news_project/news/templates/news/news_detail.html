@@ -1,0 +1,36 @@
+{% extends "news/base.html" %}
+
+{% block title %}Add News{% endblock %}
+
+{% block content %}
+
+{% if user == news.author or user.has_perm('news.delete_news') %}
+    <a href="{% url 'delete-news' news.id %}">Delete</a>
+{% endif %}
+
+
+<h1>{{ news.title }}</h1>
+<p>{{ news.content }}</p>
+<p>Published on: {{ news.created_at }}</p>
+
+<h2>Comments</h2>
+<ul>
+    {% for comment in news.comment_set.all %}
+    <li>{{ comment.content }} ({{ comment.created_at }})</li>
+    {% endfor %}
+</ul>
+
+<h3>Add a Comment</h3>
+{% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% else %}
+    <p>Available for authorized users only.</p>
+{% endif %}
+
+<a href="{% url 'news_list' %}">Back to News</a>
+
+{% endblock %}
