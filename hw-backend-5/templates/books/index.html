@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Кітап.kz - Список</title>
+</head>
+
+<body>
+<a href="/books/new">Добавить книгу</a>
+
+<ul>
+    {% for book in books %}
+    <li><a href="/books/{{ book.id }}">{{ book.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<div>
+    {% if has_prev %}
+    <a href="/books?page={{ page - 1 }}">Back</a>
+    {% endif %}
+    {% if has_next %}
+    <a href="/books?page={{ page + 1 }}">Next</a>
+    {% endif %}
+</div>
+</body>
+
+</html>
