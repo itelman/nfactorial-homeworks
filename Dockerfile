@@ -1,15 +1,12 @@
 # Use a lightweight Python image
-FROM python:3.9-slim
+FROM python:3.11
 
 # Set the working directory
-WORKDIR /
+WORKDIR /app
 
-# Copy requirements and install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy application code
+# Copy and install dependencies
 COPY . .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose port 8000
 EXPOSE 8000
