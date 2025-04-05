@@ -5,17 +5,16 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from jose import jwt
 from passlib.context import CryptContext
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
 from base.models import UserResponse, TokenResponse, UserCreate, FlowerResponse, FlowerCreate
+from repository.base import Base
 from repository.flowers import FlowersRepository
 from repository.users import UsersRepository
 
-DATABASE_URL = "postgresql://user:password@localhost/dbname"
+DATABASE_URL = "sqlite:///./storage.db"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
 
 SECRET_KEY = "zf5NgBhy6YvshK7o3kZ2VyQ9qJ8RvI41XTpLpXyz2qQ"
 ALGORITHM = "HS256"
